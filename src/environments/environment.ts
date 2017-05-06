@@ -3,6 +3,12 @@
 // `ng build --env=prod` then `environment.prod.ts` will be used instead.
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
+// quick and dirty from http://stackoverflow.com/questions/31173738/typescript-getting-error-ts2304-cannot-find-name-require
+declare var require: any;
+var config = require('../../config.json'); 
+
 export const environment = {
-  production: false
+  production: false,
+  appId: config.appId,
+  serverUrl: config.serverUrl
 };
