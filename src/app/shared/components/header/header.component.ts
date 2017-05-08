@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
 
+import { ParseService } from '../../services/parse.service';
+
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',
@@ -8,7 +10,7 @@ import {TranslateService} from '@ngx-translate/core';
 })
 export class HeaderComponent implements OnInit {
 
-    constructor(private translate: TranslateService) { }
+    constructor(private translate: TranslateService, private parse: ParseService) { }
 
     ngOnInit() {}
 
@@ -23,7 +25,7 @@ export class HeaderComponent implements OnInit {
     }
 
     onLoggedout() {
-        localStorage.removeItem('isLoggedin');
+      this.parse.logout().then(result => console.log('User has been logged out'));
     }
 
     changeLang(language: string) {
